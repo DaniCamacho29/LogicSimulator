@@ -5,17 +5,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
+
+
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
+
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Logic Simulator");
-        primaryStage.setScene(new Scene(root, 650, 500));
+        primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.setResizable(false);
         primaryStage.show();
+
+
     }
 
     public static void main(String[] args) {
