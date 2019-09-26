@@ -111,24 +111,66 @@ public class Controller extends Application implements Initializable {
         // Click del Mouse And
         label.setOnMouseClicked(new EventHandler<MouseEvent>()
         {
-
+            // Evento en el cual se genera la copia del label de la compuerta AND
             public void handle(MouseEvent mouse)
             {
-                Label copyLabel = new Label();
-                copyLabel.setGraphic(new ImageView(imageAnd));
-                copyLabel.setPrefSize(label.getPrefWidth(), label.getPrefHeight());
-                copyLabel.setLayoutX(0);
-                copyLabel.setLayoutY(0);
-
-                copy
-
-                panel.getChildren().add(copyLabel);
+                Compuerta nueva = new Compuerta(0);
+                nueva.setLabel(new Label());
+                nueva.getLabel().setGraphic(new ImageView(imageAnd));
+                nueva.getLabel().setPrefSize(label.getPrefWidth(), label.getPrefHeight());
+                nueva.getLabel().setLayoutX(0);
+                nueva.getLabel().setLayoutY(0);
+                dragCopia(nueva);
+                // agrega el label a la pantalla
+                panel.getChildren().add(nueva.getLabel());
+                panel.getChildren().add(nueva.getEntrada1().getLabel());
+                panel.getChildren().add(nueva.getEntrada2().getLabel());
+                panel.getChildren().add(nueva.getSalida().getLabel());
 
             }
 
         });
+        /*
+        label1.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            // Evento en el cual se genera la copia del label de la compuerta OR
+            public void handle(MouseEvent mouse)
+            {
 
+                Label copyLabel = new Label();
+                copyLabel.setGraphic(new ImageView(imageOr));
+                copyLabel.setPrefSize(label.getPrefWidth(), label.getPrefHeight());
+                copyLabel.setLayoutX(0);
+                copyLabel.setLayoutY(0);
+                dragCopia(copyLabel);
+                // agrega el label a la pantalla
+                panel.getChildren().add(copyLabel);
+                // agrega los labels de entradas y salidas
+                panel.getChildren().add()
+            }
 
+        });*/
+    }
+
+    // Se genera el movimiento en la ventana
+    private void dragCopia(Compuerta nueva){
+        nueva.getLabel().setOnMouseDragged(new EventHandler<MouseEvent>() {
+
+            public void handle(MouseEvent mouse) {
+                nueva.getLabel().setLayoutX(mouse.getSceneX());
+                nueva.getLabel().setLayoutY(mouse.getSceneY());
+
+                nueva.getEntrada1().getLabel().setLayoutX(nueva.getLabel().getLayoutX()-50);
+                nueva.getEntrada1().getLabel().setLayoutY(nueva.getLabel().getLayoutY()+20);
+
+                nueva.getEntrada2().getLabel().setLayoutX(nueva.getLabel().getLayoutX()-50);
+                nueva.getEntrada2().getLabel().setLayoutY(nueva.getLabel().getLayoutY()+50);
+
+                nueva.getSalida().getLabel().setLayoutX(nueva.getLabel().getLayoutX()+50);
+                nueva.getSalida().getLabel().setLayoutY(nueva.getLabel().getLayoutY()+20);
+            }
+
+        });
     }
 
 };
